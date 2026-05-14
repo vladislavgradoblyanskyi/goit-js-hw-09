@@ -69,7 +69,7 @@ gallery.insertAdjacentHTML("afterbegin",list);
 
 const lightbox =  new SimpleLightbox(".gallery a",{
     captions: true,
-    captionsData: "alt \n data-likes",
+    captionsData: "data-likes",
     captionPosition: "bottom",
     captionDelay: 250
 });
