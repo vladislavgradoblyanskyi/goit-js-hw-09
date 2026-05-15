@@ -60,7 +60,7 @@ const gallery = document.querySelector(".gallery");
 const list  = images.map(({preview,original,description,likes}) => (
     `<li class="gallery-item">
         <a class="gallery-link" href="${original}">
-            <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${likes}"/>
+            <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description}\n lajki: ${likes}"/>
         </a>
     </li>`
 )).join("");
