@@ -60,7 +60,7 @@ const gallery = document.querySelector(".gallery");
 const list  = images.map(({preview,original,description,likes}) => (
     `<li class="gallery-item">
         <a class="gallery-link" href="${original}">
-            <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes}"/>
+            <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes}  <button id='like-btn'>♡</button>"/>
         </a>
     </li>`
 )).join("");
@@ -73,6 +73,6 @@ const lightbox =  new SimpleLightbox(".gallery a",{
     captionPosition: "bottom",
     captionDelay: 250
 });
-
-
-
+document.querySelector("#like-btn").addEventListener("click",(evt)=>{
+    document.querySelector("#like-btn").classList.toggle("active");
+})
