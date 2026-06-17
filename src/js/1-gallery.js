@@ -58,19 +58,17 @@ const images = [
 ];
 const gallery = document.querySelector(".gallery");
 
-// 1. Исправлена кавычка в data-likes и изменен id на class
+
 const list = images.map(({preview, original, description, likes}) => (
   `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
-      <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes}" />
+      <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes} <div id='like-btn'>♡</div>" />
     </a>
-    <button class="like-btn">♡</button>
   </li>`
 )).join("");
 
 gallery.insertAdjacentHTML("afterbegin", list);
 
-// 2. Инициализация галереи (кнопку лайка лучше вынести из ссылки, чтобы клик не открывал модалку)
 const lightbox = new SimpleLightbox(".gallery a", {
   captions: true,
   captionsData: "data-likes",
@@ -78,10 +76,11 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionDelay: 250
 });
 
-// 3. Делегирование событий для корректной работы всех кнопок лайков
+
 gallery.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("like-btn")) {
     evt.target.classList.toggle("active");
+    
   }
 });
 
