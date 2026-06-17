@@ -57,22 +57,31 @@ const images = [
 },
 ];
 const gallery = document.querySelector(".gallery");
-const list  = images.map(({preview,original,description,likes}) => (
-    `<li class="gallery-item">
-        <a class="gallery-link" href="${original}">
-            <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes}  <button id='like-btn'>♡</button>"/>
-        </a>
-    </li>`
+
+// 1. Исправлена кавычка в data-likes и изменен id на class
+const list = images.map(({preview, original, description, likes}) => (
+  `<li class="gallery-item">
+    <a class="gallery-link" href="${original}">
+      <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes}" />
+    </a>
+    <button class="like-btn">♡</button>
+  </li>`
 )).join("");
 
-gallery.insertAdjacentHTML("afterbegin",list);
+gallery.insertAdjacentHTML("afterbegin", list);
 
-const lightbox =  new SimpleLightbox(".gallery a",{
-    captions: true,
-    captionsData: "data-likes",
-    captionPosition: "bottom",
-    captionDelay: 250
+// 2. Инициализация галереи (кнопку лайка лучше вынести из ссылки, чтобы клик не открывал модалку)
+const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionsData: "data-likes",
+  captionPosition: "bottom",
+  captionDelay: 250
 });
-document.querySelector("#like-btn").addEventListener("click",(evt)=>{
-    document.querySelector("#like-btn").classList.toggle("active");
-})
+
+// 3. Делегирование событий для корректной работы всех кнопок лайков
+gallery.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("like-btn")) {
+    evt.target.classList.toggle("active");
+  }
+});
+
