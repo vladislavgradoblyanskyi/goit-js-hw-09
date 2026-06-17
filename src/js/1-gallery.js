@@ -77,10 +77,8 @@ const lightbox = new SimpleLightbox(".gallery a", {
 });
 
 
-gallery.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("like-btn")) {
+document.querySelector("#like-btn").addEventListener("click", (evt) => {
     evt.target.classList.toggle("active");
     
-  }
 });
 
