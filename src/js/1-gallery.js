@@ -62,8 +62,10 @@ const gallery = document.querySelector(".gallery");
 const list = images.map(({preview, original, description, likes}) => (
   `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
-      <img class="gallery-image" src="${preview}" alt="${description}" data-likes="${description} <br> Lajki: ${likes} <div id='like-btn'>♡</div>" />
+      <img class="gallery-image" src="${preview}" alt="${description}"" />
     </a>
+    <button class="like-btn"><img src='../img/webp/not_loved.png' alt='not loved' class='heart'></button>
+    <span class="likes-count">${likes}</span>
   </li>`
 )).join("");
 
@@ -71,14 +73,32 @@ gallery.insertAdjacentHTML("afterbegin", list);
 
 const lightbox = new SimpleLightbox(".gallery a", {
   captions: true,
-  captionsData: "data-likes",
+  captionsData: "alt",
   captionPosition: "bottom",
   captionDelay: 250
 });
 
 
-document.querySelector("#like-btn").addEventListener("click", (evt) => {
-    evt.target.classList.toggle("active");
-    
-});
+gallery.addEventListener("click", (evt)=> {
+  console.log(evt.target);
 
+  if(!evt.target.classList.contains("heart")) return;
+
+    const img = evt.target;
+    const btn = evt.target.parentElement;
+
+    const counter = btn.nextElementSibling;
+
+    let likes = Number(counter.textContent);
+
+    btn.classList.toggle("active");
+
+    if (btn.classList.contains("active")) {
+        img.src = "../img/webp/loved.png";
+        counter.textContent = likes + 1;
+    }
+    else {
+        img.src = "../img/webp/not_loved.png";
+        counter.textContent = likes - 1;
+    }
+});
