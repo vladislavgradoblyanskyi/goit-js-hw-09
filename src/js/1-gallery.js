@@ -64,7 +64,7 @@ const list = images.map(({preview, original, description, likes}) => (
     <a class="gallery-link" href="${original}">
       <img class="gallery-image" src="${preview}" alt="${description}"" />
     </a>
-    <button class="like-btn"><img src='../img/webp/not_loved.png' alt='not loved' class='heart'></button>
+    <button class="like-btn"><img src='https://i.postimg.cc/6yL4Zsq1/not-loved.png' alt='not loved' class='heart'></button>
     <span class="likes-count">${likes}</span>
   </li>`
 )).join("");
@@ -94,11 +94,11 @@ gallery.addEventListener("click", (evt)=> {
     btn.classList.toggle("active");
 
     if (btn.classList.contains("active")) {
-        img.src = "../img/loved.png";
+        img.src = "https://i.postimg.cc/65FrDtXK/loved.png";
         counter.textContent = likes + 1;
     }
     else {
-        img.src = "../img/not_loved.png";
+        img.src = "https://i.postimg.cc/6yL4Zsq1/not-loved.png";
         counter.textContent = likes - 1;
     }
 });
