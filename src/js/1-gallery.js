@@ -94,11 +94,11 @@ gallery.addEventListener("click", (evt)=> {
     btn.classList.toggle("active");
 
     if (btn.classList.contains("active")) {
-        img.src = "../img/webp/loved.png";
+        img.src = "../img/loved.png";
         counter.textContent = likes + 1;
     }
     else {
-        img.src = "../img/webp/not_loved.png";
+        img.src = "../img/not_loved.png";
         counter.textContent = likes - 1;
     }
 });
